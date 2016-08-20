@@ -5,9 +5,13 @@
  */
 package br.edu.ifsul.trabalho;
 
+import java.io.Serializable;
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
@@ -16,7 +20,10 @@ import org.hibernate.validator.constraints.NotBlank;
  *
  * @author Ariel
  */
-public class Medico {
+@Entity
+@Table(name = "medico")
+public class Medico implements Serializable {
+    @Id
     @Length(max = 40, message = "O crm não pode passar de {max) caracteres")
     @NotNull(message = "O crm não pode ser nulo")
     @NotBlank(message = "O crm não pode estar em Branco")

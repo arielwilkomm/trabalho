@@ -1,14 +1,13 @@
-package br.edu.ifsul.teste.junitmedico;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package br.edu.ifsul.teste.junitpaciente;
 
-import br.edu.ifsul.teste.junitespecialidade.*;
 import br.edu.ifsul.trabalho.Especialidade;
 import br.edu.ifsul.trabalho.Medico;
+import br.edu.ifsul.trabalho.Paciente;
 import java.util.Calendar;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -24,17 +23,17 @@ import static org.junit.Assert.*;
  *
  * @author Ariel
  */
-public class TestePersistirMedico {
+public class TestePersistirPaciente {
     
     EntityManagerFactory emf;
     EntityManager em;
     
-    public TestePersistirMedico() {
+    public TestePersistirPaciente() {
     }
     
     @Before
     public void setUp() {
-        emf = Persistence.createEntityManagerFactory("DAW-2016-2-5n1-TrabalhoPU");
+        emf = Persistence.createEntityManagerFactory("DAW-2016-2-5n1-ModelPU");
         em = emf.createEntityManager();
     }
     
@@ -48,13 +47,19 @@ public class TestePersistirMedico {
     public void teste(){
         boolean exception = false;
         try {
-            Especialidade e = em.find(Especialidade.class, 1);
-            Medico m = new Medico();
-            m.setEspecialidade(e);
-            m.setCrm("nao sei o que é");
+            Paciente p = new Paciente();
+            p.setAltura(1.68);
+            p.setHistorico("Não tenho");
+            p.setNascimento(Calendar.getInstance());
+            p.setNome("Ariel");
+            p.setPeso(73.3);
+            p.setSexo("M");
+            p.setTelefone("05596173814");
+            p.setMedico(em.find(Medico.class, 1));
+            p.setEspecialidade(em.find(Especialidade.class, 1));
             
             em.getTransaction().begin();
-            em.persist(m);
+            em.persist(p);
             em.getTransaction().commit();
             
         } catch (Exception e) {
