@@ -24,7 +24,7 @@ public class Medico {
     private String crm;
     @ManyToOne
     @JoinColumn(name = "especialidade", referencedColumnName = "id", nullable = false)
-    private Integer especialidade;
+    private Especialidade especialidade;
 
     public Medico() {
     }
@@ -37,11 +37,11 @@ public class Medico {
         this.crm = crm;
     }
 
-    public Integer getEspecialidade() {
+    public Especialidade getEspecialidade() {
         return especialidade;
     }
 
-    public void setEspecialidade(Integer especialidade) {
+    public void setEspecialidade(Especialidade especialidade) {
         this.especialidade = especialidade;
     }
     
