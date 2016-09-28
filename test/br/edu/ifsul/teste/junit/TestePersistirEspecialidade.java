@@ -1,4 +1,4 @@
-package br.edu.ifsul.teste.junitespecialidade;
+package br.edu.ifsul.teste.junit;
 
 /*
  * To change this license header, choose License Headers in Project Properties.

@@ -6,22 +6,15 @@
 package br.edu.ifsul.trabalho;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 import java.util.Objects;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -30,7 +23,6 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
-import org.hibernate.validator.constraints.br.CPF;
 
 /**
  *
@@ -38,47 +30,42 @@ import org.hibernate.validator.constraints.br.CPF;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-@Table(name = "paciente")
-public class Paciente extends Medico implements Serializable {
+@Table
+public class Paciente implements Serializable {
     @Id
     @SequenceGenerator(name = "seq_paciente", sequenceName = "seq_paciente_id", allocationSize = 1)
     @GeneratedValue(generator = "seq_paciente", strategy = GenerationType.SEQUENCE)
     private Integer id;
-    @Length(max = 100, message = "O nome não pode ser ser maior que {max} caracteres")
+    @Length(max = 100, message = "O nome nao pode ter mais que {max} caracteres")
     @NotNull(message = "O nome não pode ser nulo")
     @NotBlank(message = "O nome não pode estar em Branco")
     @Column(name = "nome", length = 100, nullable = false)
     private String nome;
-    @NotNull(message = "O nascimento não pode ser nulo")
+    @NotNull(message = "O Nascimento deve ser informado")
     @Temporal(TemporalType.DATE)
     @Column(name = "nascimento", nullable = false)
     private Calendar nascimento;
-    @Length(max = 12, message = "O telefone não pode ser ser maior que {max} caracteres")
+    @Length(max = 11, message = "O telefone não pode ter mais de {max} caracteres")
     @NotNull(message = "O telefone não pode ser nulo")
-    @NotBlank(message = "O telefone não pode estar em Branco")
-    @Column(name = "telefone", length = 12, nullable = false)
+    @NotBlank(message = "O telefone não pode ser em branco")
+    @Column(name = "telefone", nullable = false, length = 11) 
     private String telefone;
-    @Length(max = 1, message = "O sexo não pode ser ser maior que {max} caracteres")
+    @Length(max = 1, message = "O sexo não pode ter mais de {max} caracteres")
     @NotNull(message = "O sexo não pode ser nulo")
-    @NotBlank(message = "O sexo não pode estar em Branco")
-    @Column(name = "sexo", length = 1, nullable = false)
+    @NotBlank(message = "O sexo não pode ser em branco")
+    @Column(name = "sexo", nullable = false, length = 1) 
     private String sexo;
-    @Length(max = 255, message = "O historico não pode ser ser maior que {max} caracteres")
-    @NotNull(message = "O historico não pode ser nulo")
-    @NotBlank(message = "O historico não pode estar em Branco")
-    @Column(name = "historico", length = 255, nullable = false)
+    @NotBlank(message = "O sexo não pode ser em branco")
+    @Column(name = "historico", columnDefinition = "text") 
     private String historico;
     @NotNull(message = "O peso não pode ser nulo")
-    @Min(value = 0, message = "O peso não pode ser abaixo de {value}")
+    @Min(value = 0, message = "O peso não pode ser negativo")
     @Column(name = "peso", nullable = false, columnDefinition = "numeric(3,2)")
     private Double peso;
-    @NotNull(message = "A altura não pode ser nula")
-    @Min(value = 0, message = "A altura não pode ser abaixo de {value}")
-    @Column(name = "altura", nullable = false, columnDefinition = "numeric(1,2)")
-    private Double altura;
-    @ManyToOne
-    @JoinColumn(name = "medico", referencedColumnName = "id")
-    private Medico medico;
+    @NotNull(message = "A atura não pode ser nula")
+    @Min(value = 0, message = "A atura não pode ser negativa")
+    @Column(name = "atura", nullable = false, columnDefinition = "numeric(1,2)")
+    private Double atura;
 
     public Paciente() {
     }
@@ -89,22 +76,6 @@ public class Paciente extends Medico implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public Calendar getNascimento() {
-        return nascimento;
-    }
-
-    public void setNascimento(Calendar nascimento) {
-        this.nascimento = nascimento;
     }
 
     public String getTelefone() {
@@ -139,26 +110,34 @@ public class Paciente extends Medico implements Serializable {
         this.peso = peso;
     }
 
-    public Double getAltura() {
-        return altura;
+    public Double getAtura() {
+        return atura;
     }
 
-    public void setAltura(Double altura) {
-        this.altura = altura;
+    public void setAtura(Double atura) {
+        this.atura = atura;
     }
 
-    public Medico getMedico() {
-        return medico;
+    public String getNome() {
+        return nome;
     }
 
-    public void setMedico(Medico medico) {
-        this.medico = medico;
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public Calendar getNascimento() {
+        return nascimento;
+    }
+
+    public void setNascimento(Calendar nascimento) {
+        this.nascimento = nascimento;
     }
 
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 79 * hash + Objects.hashCode(this.id);
+        hash = 67 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -179,8 +158,6 @@ public class Paciente extends Medico implements Serializable {
         }
         return true;
     }
-    
-    
 
     
     

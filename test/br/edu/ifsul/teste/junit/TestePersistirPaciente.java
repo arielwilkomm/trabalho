@@ -1,4 +1,4 @@
-package br.edu.ifsul.teste.junitmedico;
+package br.edu.ifsul.teste.junit;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -6,9 +6,9 @@ package br.edu.ifsul.teste.junitmedico;
  * and open the template in the editor.
  */
 
-import br.edu.ifsul.teste.junitespecialidade.*;
 import br.edu.ifsul.trabalho.Especialidade;
 import br.edu.ifsul.trabalho.Medico;
+import br.edu.ifsul.trabalho.Paciente;
 import java.util.Calendar;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -24,12 +24,12 @@ import static org.junit.Assert.*;
  *
  * @author Ariel
  */
-public class TestePersistirMedico {
+public class TestePersistirPaciente {
     
     EntityManagerFactory emf;
     EntityManager em;
     
-    public TestePersistirMedico() {
+    public TestePersistirPaciente() {
     }
     
     @Before
@@ -48,13 +48,19 @@ public class TestePersistirMedico {
     public void teste(){
         boolean exception = false;
         try {
-            Especialidade e = em.find(Especialidade.class, 1);
-            Medico m = new Medico();
-            m.setEspecialidade(e);
-            m.setCrm("nao sei o que é");
+            Medico p = new Medico();
+            p.setAtura(1.22);
+            p.setHistorico("nem um");
+            p.setNascimento(Calendar.getInstance());
+            p.setNome("Ariel");
+            p.setPeso(12.90);
+            p.setSexo("M");
+            p.setTelefone("6688998877");
+            p.setCrm("123456");
+            p.setEspecialidade(em.find(Especialidade.class, 1));
             
             em.getTransaction().begin();
-            em.persist(m);
+            em.persist(p);
             em.getTransaction().commit();
             
         } catch (Exception e) {
