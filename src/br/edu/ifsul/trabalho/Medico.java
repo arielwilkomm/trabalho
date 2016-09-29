@@ -8,9 +8,6 @@ package br.edu.ifsul.trabalho;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -23,7 +20,6 @@ import org.hibernate.validator.constraints.NotBlank;
  * @author Ariel
  */
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "medico")
 public class Medico extends Paciente implements Serializable {
     @Length(max = 40, message = "O crm não pode passar de {max) caracteres")

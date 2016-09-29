@@ -30,7 +30,7 @@ import org.hibernate.validator.constraints.NotBlank;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-@Table
+@Table(name = "paciente")
 public class Paciente implements Serializable {
     @Id
     @SequenceGenerator(name = "seq_paciente", sequenceName = "seq_paciente_id", allocationSize = 1)
@@ -60,12 +60,12 @@ public class Paciente implements Serializable {
     private String historico;
     @NotNull(message = "O peso não pode ser nulo")
     @Min(value = 0, message = "O peso não pode ser negativo")
-    @Column(name = "peso", nullable = false, columnDefinition = "numeric(3,2)")
+    @Column(name = "peso", nullable = false, columnDefinition = "numeric(12,2)")
     private Double peso;
-    @NotNull(message = "A atura não pode ser nula")
-    @Min(value = 0, message = "A atura não pode ser negativa")
-    @Column(name = "atura", nullable = false, columnDefinition = "numeric(1,2)")
-    private Double atura;
+    @NotNull(message = "A altura não pode ser nula")
+    @Min(value = 0, message = "A altura não pode ser negativa")
+    @Column(name = "altura", nullable = false, columnDefinition = "numeric(12,2)")
+    private Double altura;
 
     public Paciente() {
     }
@@ -111,11 +111,11 @@ public class Paciente implements Serializable {
     }
 
     public Double getAtura() {
-        return atura;
+        return altura;
     }
 
-    public void setAtura(Double atura) {
-        this.atura = atura;
+    public void setAtura(Double altura) {
+        this.altura = altura;
     }
 
     public String getNome() {
