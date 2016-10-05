@@ -10,6 +10,7 @@ package br.edu.ifsul.teste.junit;
 //import br.edu.ifsul.trabalho.Consulta;
 import br.edu.ifsul.trabalho.Especialidade;
 import br.edu.ifsul.trabalho.Medico;
+import br.edu.ifsul.trabalho.Paciente;
 import java.util.Calendar;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -47,21 +48,14 @@ public class TestePersistirPaciente {
     public void teste(){
         boolean exception = false;
         try {
-            Medico c = new Medico();
-//            Exame e = new Exame();
+            Paciente c = new Paciente();
             c.setNascimento(Calendar.getInstance());
             c.setAtura(1.11);
-            c.setCrm("111");
-            c.setEspecialidade(em.find(Especialidade.class, 1));
             c.setHistorico("sss");
             c.setNome("A");
             c.setPeso(12.33);
             c.setSexo("M");
             c.setTelefone("00000000");
-//            e.setConsulta(c);
-//            e.setDescricao("b");
-//            e.setNome("nao");
-//            c.adicionarExame(e);
             em.getTransaction().begin();
             em.persist(c);
             em.getTransaction().commit();

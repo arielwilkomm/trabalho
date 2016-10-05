@@ -27,12 +27,12 @@ import org.junit.Test;
  *
  * @author Ariel
  */
-public class TestePersistirPaciente1 {
+public class TestePersistirReceituario {
 
     EntityManagerFactory emf;
     EntityManager em;
 
-    public TestePersistirPaciente1() {
+    public TestePersistirReceituario() {
     }
 
     @Before

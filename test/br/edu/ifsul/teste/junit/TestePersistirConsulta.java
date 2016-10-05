@@ -27,12 +27,12 @@ import org.junit.Test;
  *
  * @author Ariel
  */
-public class TestePersistirPaciente1 {
+public class TestePersistirConsulta {
 
     EntityManagerFactory emf;
     EntityManager em;
 
-    public TestePersistirPaciente1() {
+    public TestePersistirConsulta() {
     }
 
     @Before
@@ -51,19 +51,20 @@ public class TestePersistirPaciente1 {
     public void teste() {
         boolean exception = false;
         try {
-//            Receituario r = new Receituario();
-//            r.setPosologia("a");
-//            r.setValidade(Calendar.getInstance());
-//            c.adicionarReceituario(r);
-Receituario m = em.find(Receituario.class, 1);
-Medicamento r = em.find(Medicamento.class, 4);
-            r.getReceituario().add(m);
-
-//            Receituario r = em.find(Receituario.class, 1);
-//            Medicamento m = em.find(Medicamento.class, 1);
-//            m.getMedicamentos().add(r);
+            Consulta c = em.find(Consulta.class, 2);
+            c.setData(Calendar.getInstance());
+            c.setHora(Calendar.getInstance());
+            c.setPosconsulta("a");
+            c.setPreconsulta("b");
+            c.setPaciente(em.find(Paciente.class, 1));
+            c.setMedico(em.find(Medico.class, 1));
+            Exame e = new Exame();
+            e.setConsulta(c);
+            e.setDescricao("b");
+            e.setNome("nao");
+            c.adicionarExame(e);
             em.getTransaction().begin();
-            em.persist(r);
+            em.persist(c);
             em.getTransaction().commit();
 
         } catch (Exception e) {

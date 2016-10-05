@@ -5,6 +5,10 @@
     <class>br.edu.ifsul.trabalho.Especialidade</class>
     <class>br.edu.ifsul.trabalho.Paciente</class>
     <class>br.edu.ifsul.trabalho.Medico</class>
+    <class>br.edu.ifsul.trabalho.Consulta</class>
+    <class>br.edu.ifsul.trabalho.Exame</class>
+    <class>br.edu.ifsul.trabalho.Medicamento</class>
+    <class>br.edu.ifsul.trabalho.Receituario</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/daw-2016-2-5n1-trabalho"/>
       <property name="javax.persistence.jdbc.password" value="ariel"/>
