@@ -37,7 +37,7 @@ public class Medicamento implements Serializable {
     @Length(max = 40, message = "O nome nao pode ter mais que {max} caracteres")
     @NotNull(message = "O nome não pode ser nulo")
     @NotBlank(message = "O nome não pode estar em Branco")
-    @Column(name = "nome", length = 2, nullable = false)
+    @Column(name = "nome", length = 40, nullable = false)
     private String nome;
     @ManyToMany
     @JoinTable(name = "medicamentos_receituario",

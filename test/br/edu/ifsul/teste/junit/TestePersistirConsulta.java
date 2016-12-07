@@ -63,6 +63,7 @@ public class TestePersistirConsulta {
             e.setDescricao("b");
             e.setNome("nao");
             c.adicionarExame(e);
+            
             em.getTransaction().begin();
             em.persist(c);
             em.getTransaction().commit();

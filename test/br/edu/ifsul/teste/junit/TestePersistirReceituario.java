@@ -56,7 +56,7 @@ public class TestePersistirReceituario {
 //            r.setValidade(Calendar.getInstance());
 //            c.adicionarReceituario(r);
 Receituario m = em.find(Receituario.class, 1);
-Medicamento r = em.find(Medicamento.class, 4);
+Medicamento r = em.find(Medicamento.class, 5);
             r.getReceituario().add(m);
 
 //            Receituario r = em.find(Receituario.class, 1);
